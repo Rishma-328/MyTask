@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MyTask</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="menu">☰</div>
+
+        <h1>MyTask</h1>
+
+        <div class="notification" onclick="showAlerts()">
+            🔔
+            <span id="notificationCount">0</span>
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+
+        <!-- ================= HOME SCREEN ================= -->
+
+        <section id="homeScreen">
+
+            <!-- Welcome -->
+
+            <section class="welcome">
+
+                <div>
+                    <p>Good Morning,</p>
+
+                    <h2>Welcome!</h2>
+
+                    <span>
+                        Stay productive, achieve more!
+                    </span>
+                </div>
+
+                <div class="welcome-icon">
+                    🌱
+                </div>
+
+            </section>
+
+
+            <!-- Task Status -->
+
+            <h3 class="title">
+                Task Status Overview
+            </h3>
+
+
+            <section class="status-container">
+
+                <div class="status completed">
+
+                    <div class="status-icon">
+                        ✓
+                    </div>
+
+                    <h2 id="completedCount">
+                        0
+                    </h2>
+
+                    <p>
+                        Completed
+                    </p>
+
+                </div>
+
+
+                <div class="status progress">
+
+                    <div class="status-icon">
+                        ◔
+                    </div>
+
+                    <h2 id="progressCount">
+                        0
+                    </h2>
+
+                    <p>
+                        In Progress
+                    </p>
+
+                </div>
+
+
+                <div class="status pending">
+
+                    <div class="status-icon">
+                        !
+                    </div>
+
+                    <h2 id="pendingCount">
+                        0
+                    </h2>
+
+                    <p>
+                        Pending
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Recent Activities -->
+
+            <div class="heading-row">
+
+                <h3>
+                    Recent Activities
+                </h3>
+
+                <button onclick="showTasks()">
+                    View all →
+                </button>
+
+            </div>
+
+
+            <section id="activities">
+
+                <div class="empty">
+                    No activities yet
+                </div>
+
+            </section>
+
+
+            <!-- Quick Actions -->
+
+            <h3 class="title">
+                Quick Actions
+            </h3>
+
+
+            <section class="quick-actions">
+
+                <button onclick="addTask()">
+
+                    <span>
+                        ＋
+                    </span>
+
+                    Add Task
+
+                </button>
+
+
+                <button onclick="showAlerts()">
+
+                    <span>
+                        🔔
+                    </span>
+
+                    View Alerts
+
+                </button>
+
+
+                <button onclick="showSettings()">
+
+                    <span>
+                        ⚙️
+                    </span>
+
+                    Settings
+
+                </button>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- ================= MANUAL CONTROLS ================= -->
+
+        <section id="controlScreen" class="hidden">
+
+            <div class="page-header">
+
+                <button onclick="goHome()">
+                    ←
+                </button>
+
+                <h2>
+                    Manual Controls
+                </h2>
+
+                <button class="invisible-btn">
+                    •
+                </button>
+
+            </div>
+
+
+            <!-- LIGHT -->
+
+            <div class="control-card light-card">
+
+                <div class="control-icon">
+                    💡
+                </div>
+
+                <div class="control-info">
+
+                    <h3>
+                        Light Control
+                    </h3>
+
+                    <p>
+                        Turn on/off home lights
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="lightSwitch"
+                        onchange="controlChanged('Light', this.checked)"
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- FAN -->
+
+            <div class="control-card fan-card">
+
+                <div class="control-icon">
+                    🌀
+                </div>
+
+                <div class="control-info">
+
+                    <h3>
+                        Fan Control
+                    </h3>
+
+                    <p>
+                        Control ceiling fan
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="fanSwitch"
+                        onchange="controlChanged('Fan', this.checked)"
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- AC -->
+
+            <div class="control-card ac-card">
+
+                <div class="control-icon">
+                    ❄️
+                </div>
+
+                <div class="control-info">
+
+                    <h3>
+                        AC Control
+                    </h3>
+
+                    <p>
+                        Set temperature & mode
+                    </p>
+
+                </div>
+
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="acSwitch"
+                        onchange="controlChanged('AC', this.checked)"
+                    >
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- TV -->
+
+            <div
+                class="control-card tv-card"
+                onclick="openTVControl()"
+            >
+
+                <div class="control-icon">
+                    📺
+                </div>
+
+                <div class="control-info">
+
+                    <h3>
+                        TV Control
+                    </h3>
+
+                    <p>
+                        Power, channels, volume
+                    </p>
+
+                </div>
+
+                <div class="arrow">
+                    ›
+                </div>
+
+            </div>
+
+
+
+            <!-- SECURITY -->
+
+            <div
+                class="control-card security-card"
+                onclick="securityControl()"
+            >
+
+                <div class="control-icon">
+                    🛡️
+                </div>
+
+                <div class="control-info">
+
+                    <h3>
+                        Security System
+                    </h3>
+
+                    <p>
+                        Arm / Disarm
+                    </p>
+
+                </div>
+
+                <div class="arrow">
+                    ›
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ================= TV CONTROL ================= -->
+
+<section id="tvScreen" class="hidden">
+
+    <div class="page-header">
+
+        <button onclick="showControls()">
+            ←
+        </button>
+
+        <h2>
+            TV Control
+        </h2>
+
+        <button class="invisible-btn">
+            •
+        </button>
+
+    </div>
+
+
+    <!-- TV Power -->
+
+    <div class="tv-main-card">
+
+        <div class="tv-icon">
+            📺
+        </div>
+
+        <h2>
+            Smart TV
+        </h2>
+
+        <p id="tvStatus">
+            TV is OFF
+        </p>
+
+        <button
+            id="tvPowerButton"
+            class="tv-power"
+            onclick="toggleTV()"
+        >
+            ⏻
+        </button>
+
+    </div>
+
+
+    <!-- Volume -->
+
+    <div class="tv-control-card">
+
+        <h3>
+            Volume
+        </h3>
+
+        <div class="volume-controls">
+
+            <button onclick="changeVolume(-1)">
+                −
+            </button>
+
+            <span id="volumeValue">
+                20
+            </span>
+
+            <button onclick="changeVolume(1)">
+                +
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Channels -->
+
+    <div class="tv-control-card">
+
+        <h3>
+            Channel
+        </h3>
+
+        <div class="channel-controls">
+
+            <button onclick="changeChannel(-1)">
+                CH −
+            </button>
+
+            <span id="channelValue">
+                1
+            </span>
+
+            <button onclick="changeChannel(1)">
+                CH +
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Quick Buttons -->
+
+    <div class="tv-control-card">
+
+        <h3>
+            Quick Controls
+        </h3>
+
+        <div class="tv-buttons">
+
+            <button onclick="tvAction('Home')">
+                🏠 Home
+            </button>
+
+            <button onclick="tvAction('Mute')">
+                🔇 Mute
+            </button>
+
+            <button onclick="tvAction('Source')">
+                🔄 Source
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<section id="alertScreen" class="hidden">
+
+    <div class="page-header">
+        <h2>Alerts & Notifications</h2>
+    </div>
+
+    <!-- Notification Summary -->
+    <div class="alert-summary">
+        <div>
+            <h3 id="alertCount">0</h3>
+            <p>Total Alerts</p>
+        </div>
+
+        <button onclick="clearAlerts()">Clear All</button>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="alert-filters">
+        <button class="filter-btn active" onclick="filterAlerts('All', this)">
+            All
+        </button>
+
+        <button class="filter-btn" onclick="filterAlerts('System', this)">
+            System
+        </button>
+
+        <button class="filter-btn" onclick="filterAlerts('Security', this)">
+            Security
+        </button>
+
+        <button class="filter-btn" onclick="filterAlerts('Task', this)">
+            Task
+        </button>
+    </div>
+
+    <!-- Notifications -->
+    <div id="alertList"></div>
+
+</section>
+
+
+
+        <!-- ================= TASK SCREEN ================= -->
+
+        <section id="taskScreen" class="hidden">
+
+            <div class="page-header">
+
+                <button onclick="goHome()">
+                    ←
+                </button>
+
+                <h2>
+                    Task Manager
+                </h2>
+
+                <button onclick="addTask()">
+                    ＋
+                </button>
+
+            </div>
+
+
+            <div id="taskList">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ALERT SCREEN ================= -->
+
+        <section id="alertScreen" class="hidden">
+
+            <div class="page-header">
+
+                <button onclick="goHome()">
+                    ←
+                </button>
+
+                <h2>
+                    Alerts
+                </h2>
+
+                <button class="invisible-btn">
+                    •
+                </button>
+
+            </div>
+
+
+            <div id="alertList">
+
+                <div class="empty">
+                    No alerts
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SETTINGS SCREEN ================= -->
+
+        <section id="settingsScreen" class="hidden">
+
+            <div class="page-header">
+
+                <button onclick="goHome()">
+                    ←
+                </button>
+
+                <h2>
+                    Settings
+                </h2>
+
+                <button class="invisible-btn">
+                    •
+                </button>
+
+            </div>
+
+
+            <div class="settings">
+
+                <button onclick="alert('MyTask App')">
+
+                    ℹ️
+                    About MyTask
+
+                </button>
+
+
+                <button onclick="clearData()">
+
+                    🗑️
+                    Clear App Data
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= BOTTOM NAVIGATION ================= -->
+
+    <nav class="bottom-nav">
+
+        <button onclick="goHome()">
+
+            🏠
+
+            <span>
+                Home
+            </span>
+
+        </button>
+
+
+        <button onclick="showControls()">
+
+            ☷
+
+            <span>
+                Controls
+            </span>
+
+        </button>
+
+
+        <button onclick="showAlerts()">
+
+            🔔
+
+            <span>
+                Alerts
+            </span>
+
+        </button>
+
+
+        <button onclick="showSettings()">
+
+            ☰
+
+            <span>
+                More
+            </span>
+
+        </button>
+
+    </nav>
+
+
+
+    <!-- ================= ADD TASK POPUP ================= -->
+
+    <div
+        id="taskPopup"
+        class="popup hidden"
+    >
+
+        <div class="popup-box">
+
+            <button
+                class="close"
+                onclick="closePopup()"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                Add Task
+            </h2>
+
+
+            <input
+                type="text"
+                id="taskName"
+                placeholder="Enter task name"
+            >
+
+
+            <select id="taskStatus">
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="In Progress">
+                    In Progress
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+            </select>
+
+
+            <button
+                class="add-button"
+                onclick="saveTask()"
+            >
+                Add Task
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/app.js"></script>
+
+</div>
+
+</body>
+
+</html>
