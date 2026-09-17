@@ -1,0 +1,775 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #222;
+}
+
+.app {
+    max-width: 480px;
+    min-height: 100vh;
+    margin: auto;
+    background: #ffffff;
+    position: relative;
+    padding-bottom: 80px;
+}
+
+/* Header */
+.header {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+.header h1 {
+    font-size: 22px;
+    color: #333;
+}
+
+.menu {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.notification {
+    position: relative;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#notificationCount {
+    position: absolute;
+    top: -7px;
+    right: -8px;
+    background: #ff4757;
+    color: white;
+    font-size: 10px;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main */
+main {
+    padding: 20px;
+}
+
+/* Welcome */
+.welcome {
+    background: linear-gradient(135deg, #e8f5e9, #dff7ed);
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.welcome p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.welcome h2 {
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+.welcome span {
+    font-size: 13px;
+    color: #666;
+}
+
+.welcome-icon {
+    font-size: 45px;
+}
+
+/* Titles */
+.title {
+    font-size: 18px;
+    margin: 20px 0 13px;
+}
+
+.heading-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0 13px;
+}
+
+.heading-row h3 {
+    font-size: 18px;
+}
+
+.heading-row button {
+    border: none;
+    background: none;
+    color: #4caf50;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Status */
+.status-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.status {
+    padding: 15px 8px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.status-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.status h2 {
+    font-size: 22px;
+}
+
+.status p {
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.completed {
+    background: #e8f8ed;
+}
+
+.completed .status-icon {
+    background: #4caf50;
+    color: white;
+}
+
+.progress {
+    background: #fff5df;
+}
+
+.progress .status-icon {
+    background: #ffb52e;
+    color: white;
+}
+
+.pending {
+    background: #ffe9e9;
+}
+
+.pending .status-icon {
+    background: #ff5c5c;
+    color: white;
+}
+
+/* Activities */
+#activities {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.activity {
+    background: #f7f8fa;
+    padding: 14px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.activity-status {
+    font-size: 11px;
+    padding: 5px 9px;
+    border-radius: 10px;
+    background: #e8f5e9;
+    color: #388e3c;
+}
+
+.empty {
+    background: #f7f8fa;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    color: #888;
+    font-size: 14px;
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.quick-actions button {
+    border: 1px solid #eee;
+    background: white;
+    border-radius: 14px;
+    padding: 15px 5px;
+    cursor: pointer;
+    font-size: 11px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+.quick-actions button span {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 7px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(480px, 100%);
+    height: 70px;
+    background: white;
+    border-top: 1px solid #eee;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    z-index: 10;
+}
+
+.bottom-nav button {
+    border: none;
+    background: white;
+    color: #777;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.bottom-nav button span {
+    display: block;
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+.bottom-nav button:first-child {
+    color: #4caf50;
+}
+
+/* Pages */
+.hidden {
+    display: none !important;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.page-header h2 {
+    font-size: 20px;
+}
+
+.page-header button {
+    border: none;
+    background: #f1f3f5;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Task */
+.task-card {
+    background: #f7f8fa;
+    padding: 15px;
+    border-radius: 13px;
+    margin-bottom: 10px;
+}
+
+.task-card h3 {
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.task-card p {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Alerts */
+.alert-card {
+    background: #fff5df;
+    padding: 15px;
+    border-radius: 13px;
+    margin-bottom: 10px;
+}
+
+.alert-card h3 {
+    font-size: 14px;
+}
+
+.alert-card p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Settings */
+.settings button {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 10px;
+    border: none;
+    background: #f7f8fa;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    padding: 20px;
+}
+
+.popup-box {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    position: relative;
+}
+
+.popup-box h2 {
+    margin-bottom: 20px;
+}
+
+.popup-box input,
+.popup-box select {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    border: none;
+    background: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.add-button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #4caf50;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 350px) {
+    main {
+        padding: 15px;
+    }
+
+    .welcome {
+        padding: 17px;
+    }
+
+    .welcome h2 {
+        font-size: 21px;
+    }
+
+    .status-container {
+        gap: 6px;
+    }
+}
+/* =========================
+   MANUAL CONTROLS
+========================= */
+
+.control-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 13px;
+    min-height: 75px;
+}
+
+.light-card {
+    background: #eaf5ff;
+}
+
+.fan-card {
+    background: #eaf8ef;
+}
+
+.ac-card {
+    background: #f1edff;
+}
+
+.tv-card {
+    background: #fff3df;
+    cursor: pointer;
+}
+
+.security-card {
+    background: #ffe9ed;
+    cursor: pointer;
+}
+
+.control-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-right: 12px;
+}
+
+.control-info {
+    flex: 1;
+}
+
+.control-info h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.control-info p {
+    font-size: 10px;
+    color: #777;
+}
+
+.arrow {
+    font-size: 25px;
+    color: #888;
+}
+
+/* ON/OFF SWITCH */
+
+.switch {
+    position: relative;
+    width: 42px;
+    height: 23px;
+    display: inline-block;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #b8c0c8;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+    background: #2196f3;
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(19px);
+}
+
+/* Empty button in page header */
+
+.invisible-btn {
+    visibility: hidden;
+}
+/* =========================
+   TV CONTROL PAGE
+========================= */
+
+.tv-main-card {
+    background: #fff3df;
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.tv-icon {
+    font-size: 55px;
+    margin-bottom: 8px;
+}
+
+.tv-main-card h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.tv-main-card p {
+    font-size: 12px;
+    color: #777;
+}
+
+.tv-power {
+    width: 60px;
+    height: 60px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 50%;
+    background: #ff5c5c;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.tv-control-card {
+    background: #f7f8fa;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.tv-control-card h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.volume-controls,
+.channel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.volume-controls button,
+.channel-controls button {
+    border: none;
+    background: white;
+    width: 45px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#volumeValue,
+#channelValue {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.tv-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.tv-buttons button {
+    border: none;
+    background: white;
+    padding: 12px 5px;
+    border-radius: 10px;
+    font-size: 11px;
+    cursor: pointer;
+}
+/* ================================= */
+/* ALERTS & NOTIFICATIONS */
+/* ================================= */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.page-header h2 {
+    font-size: 20px;
+}
+
+/* Alert Summary */
+
+.alert-summary {
+    background: #eef4ff;
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.alert-summary h3 {
+    font-size: 25px;
+    margin-bottom: 3px;
+}
+
+.alert-summary p {
+    font-size: 11px;
+    color: #777;
+}
+
+.alert-summary button {
+    border: none;
+    background: #ff5c5c;
+    color: white;
+    padding: 9px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+/* Filter Buttons */
+
+.alert-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+.filter-btn {
+    border: none;
+    background: #f1f3f5;
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-size: 11px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.filter-btn.active {
+    background: #2196f3;
+    color: white;
+}
+
+/* Alert Card */
+
+.alert-card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border-left: 4px solid #2196f3;
+}
+
+.alert-card.security {
+    border-left-color: #ff5c5c;
+}
+
+.alert-card.system {
+    border-left-color: #9c27b0;
+}
+
+.alert-card.task {
+    border-left-color: #4caf50;
+}
+
+/* Alert Top */
+
+.alert-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #eef4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.alert-info {
+    flex: 1;
+}
+
+.alert-info h3 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.alert-info p {
+    font-size: 11px;
+    color: #777;
+}
+
+/* Time */
+
+.alert-time {
+    font-size: 9px;
+    color: #999;
+    margin-top: 8px;
+}
+
+/* Empty Message */
+
+.empty {
+    text-align: center;
+    padding: 40px 10px;
+    color: #999;
+    font-size: 13px;
+}
